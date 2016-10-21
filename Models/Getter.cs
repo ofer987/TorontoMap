@@ -5,34 +5,10 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Newtonsoft;
+using Newtonsoft.Json;
 
 namespace TorontoMap.Models
 {
-    public class Status
-    {
-        [Newtonsoft.Json.JsonProperty("id")]
-        public int Id { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("tweet_id")]
-        public long TweetId { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("line_id")]
-        public int LineId { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("line_type")]
-        public string LineType { get; set; }
-
-        public string Description { get; set; }
-
-        public string TweetedAt { get; set; }
-
-        public override string ToString()
-        {
-            return $"LineId {LineId} for type {LineType}";
-        }
-    }
-
     public class Getter
     {
         public string ApiKey { get; }
@@ -77,7 +53,7 @@ namespace TorontoMap.Models
                 contentTask.Wait();
 
                 var body = contentTask.Result;
-                var statuses = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Status>>(body);
+                var statuses = JsonConvert.DeserializeObject<List<Status>>(body);
 
                 Console.WriteLine($"Result {response}");
                 // Console.WriteLine($"Result {body}");

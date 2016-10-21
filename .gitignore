@@ -232,3 +232,10 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+
+# Ignore bower libraries
+wwwroot/lib/**/*
+
+# Ignore machine generated minified files
+wwwroot/js/*.min.js
+wwwroot/css/*.min.css

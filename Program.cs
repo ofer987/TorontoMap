@@ -1,24 +1,31 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 
-namespace TorontoMap
+namespace Player
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            var getter = new Models.Getter("foo");
-            // var task = new Task(getter.Directions);
+            var config = new ConfigurationBuilder()
+                .AddCommandLine(args)
+                .AddEnvironmentVariables(prefix: "ASPNETCORE_")
+                .Build();
 
-            // task.Start();
-            // Console.WriteLine("Starting");
-            // task.Wait(-1);
-            // Console.WriteLine("Finished");
+            var host = new WebHostBuilder()
+                .UseConfiguration(config)
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseIISIntegration()
+                .UseStartup<Startup>()
+                .Build();
 
-            getter.ReadFile();
-            getter.Lines();
+            host.Run();
         }
     }
 }

@@ -1,0 +1,53 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/player.js"></script>
+<script src="~/js/map.js"></script>
+<script>
+    function renderMap() {
+        var map = new Map();
+        map.addPosition("Frodo", -45, 45);
+        map.render();
+    }
+</script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAor0aj6SGbSlOjiso-Zx-44YB4xy3pRL4&callback=renderMap">
+</script>
+
+<form id="create-player-form">
+    <label for="name">Name</label>
+    <input id="name" type="text" name="name"></input>
+
+    <label for="lat">Latitude</label>
+    <input id="latitude" type="text" name="latitude"></input>
+
+    <label for="lng">Longitude</label>
+    <input id="longitude" type="text" name="longitude"></input>
+
+    <input type="submit" value="Submit"</input>
+</form>
+
+<div class="ui grid">
+    <div class="eight wide column">
+        <div class="ui segment">
+            <h1 class="ui black ribbon label">Player List</h1>
+            <ol class="ui list">
+                <li><a href="https://go.microsoft.com/fwlink/?LinkID=398600">Add a Controller and View</a></li>
+                <li><a href="https://go.microsoft.com/fwlink/?LinkID=699314">Add an appsetting in config and access it in app.</a></li>
+                <li><a href="https://go.microsoft.com/fwlink/?LinkId=699315">Manage User Secrets using Secret Manager.</a></li>
+                <li><a href="https://go.microsoft.com/fwlink/?LinkId=699316">Use logging to log a message.</a></li>
+                <li><a href="https://go.microsoft.com/fwlink/?LinkId=699317">Add packages using NuGet.</a></li>
+                <li><a href="https://go.microsoft.com/fwlink/?LinkId=699318">Add client packages using Bower.</a></li>
+                <li><a href="https://go.microsoft.com/fwlink/?LinkId=699319">Target development, staging or production environment.</a></li>
+            </ol>
+        </div>
+    </div>
+    <div class="eight wide column">
+        <div class="ui segment">
+            <h1 class="ui black ribbon label">Map</h1>
+            <div id="map"></div>
+        </div>
+    </div>
+</div>
